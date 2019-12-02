@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.mapping.entity.Instructor;
 import com.mapping.entity.InstructorDetail;
 
-public class DemoOnetoOneBiDir {
+public class DeleteInstructorDetailOnetoOneBiDirRemove {
 
 	public static void main(String[] args) {
 		//create Session Factory
@@ -30,8 +30,15 @@ public class DemoOnetoOneBiDir {
 			if(instructorDetail!=null)
 			{
 				System.err.println("Bi instructorDetail "+instructorDetail);
-				System.err.println(" instructor "+instructorDetail.getInstructor().getFirstName());
+				System.err.println("assoicated instructor "+instructorDetail.getInstructor().getFirstName());
 				// Note will delete all Object and assoicated obje since Cascade type is ALL
+				
+				// remove the assoicated object reference
+				// break bi directionl link
+				instructorDetail.getInstructor().setInstructorDetail(null);
+				session.delete(instructorDetail);
+				
+				
 			}
 			
 			// commit transaction

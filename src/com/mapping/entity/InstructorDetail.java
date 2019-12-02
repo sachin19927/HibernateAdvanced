@@ -27,7 +27,8 @@ public class InstructorDetail {
 	@Column(name="hobby")
 	private String hobby;
 	
-	@OneToOne(mappedBy="instructorDetail",cascade=CascadeType.ALL)  // instructorDetail refers to "instructorDetail" property in Instrutor Class
+	//@OneToOne(mappedBy="instructorDetail",cascade=CascadeType.ALL)  // instructorDetail refers to "instructorDetail" property in Instrutor Class
+	@OneToOne(mappedBy="instructorDetail",cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private Instructor instructor;  // Adding New Field to make Bi- directionl also add getter and Setter
 	//instructor field  is mapped by "instructorDetail" property in Instrutor Class
 	
