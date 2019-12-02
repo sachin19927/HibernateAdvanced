@@ -7,7 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.mapping.entity.Instructor;
 import com.mapping.entity.InstructorDetail;
 
-public class DeleteDemoOnetoOne2 {
+public class DeleteDemoOnetoOne {
 
 	public static void main(String[] args) {
 		//create Session Factory

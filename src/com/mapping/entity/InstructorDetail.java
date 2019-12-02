@@ -1,11 +1,13 @@
 package com.mapping.entity;
 
 import javax.annotation.Generated;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -24,6 +26,10 @@ public class InstructorDetail {
 	private String youtubeChannel;
 	@Column(name="hobby")
 	private String hobby;
+	
+	@OneToOne(mappedBy="instructorDetail",cascade=CascadeType.ALL)  // instructorDetail refers to "instructorDetail" property in Instrutor Class
+	private Instructor instructor;  // Adding New Field to make Bi- directionl also add getter and Setter
+	//instructor field  is mapped by "instructorDetail" property in Instrutor Class
 	
 	public InstructorDetail() {
 	}
@@ -53,6 +59,16 @@ public class InstructorDetail {
 		this.hobby = hobby;
 	}
 	
+	
+	
+	public Instructor getInstructor() {
+		return instructor;
+	}
+
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
+	}
+
 	@Override
 	public String toString() {
 		return "InstructorDetail [id=" + id + ", youtubeChannel=" + youtubeChannel + ", hobby=" + hobby + "]";
