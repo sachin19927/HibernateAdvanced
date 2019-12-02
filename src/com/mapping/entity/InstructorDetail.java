@@ -11,7 +11,11 @@ import javax.persistence.Table;
 @Entity
 @Table(name="instructor_detail",schema="basicdb")
 public class InstructorDetail {
-	
+	// annotate class as an entity and map the db table
+	// add fields and annotate eith db columns
+	// create constructor
+	// getter and Setter
+	// toString method
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
@@ -20,6 +24,16 @@ public class InstructorDetail {
 	private String youtubeChannel;
 	@Column(name="hobby")
 	private String hobby;
+	
+	public InstructorDetail() {
+	}
+	
+	public InstructorDetail(String youtubeChannel, String hobby) {
+		this.youtubeChannel = youtubeChannel;
+		this.hobby = hobby;
+	}
+
+
 	public int getId() {
 		return id;
 	}
