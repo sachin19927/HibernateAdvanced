@@ -11,33 +11,34 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="course",schema = "basicdb")
+@Table(name="course",schema="basicdb")
 public class Course {
-	// map tables
-	// define fields and mapp it
-	// define constructor
-	//define getter and setter
-	// define tostring
-	// annotaone fields
 
-		@Id
- 		@GeneratedValue(strategy = GenerationType.IDENTITY)
-		@Column(name="id")
-		private int id;
-
-		@Column(name="title")
-		private String title;
-		// many course has one instructor
-		// cascade is imp dnt delete so check cascade delete
-		@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
-		@JoinColumn(name="instructor_id")  // instructor_id is kay in Course table which points if of Instructor table
-		private Instructor instructor;
-
+	//define field
+	//define Constructor
+	// define getter / setter 
+	// define toString
+	// annotate fields
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
+	private int id;
+	
+	@Column(name="title")
+	private String title;
+	
+	//ManyToOne many course can have one instructor
+	// join column instructor_id of course table maps to Instructor Table id
+	// add cascade NO CASCADE DELETE
+	@ManyToOne(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@JoinColumn(name="instructor_id")
+	private Instructor instructor;
+	
 	public Course() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public Course(String title) {
+		super();
 		this.title = title;
 	}
 
@@ -70,7 +71,5 @@ public class Course {
 		return "Course [id=" + id + ", title=" + title + ", instructor=" + instructor + "]";
 	}
 
-
-
-
+	
 }
