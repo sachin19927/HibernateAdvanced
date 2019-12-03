@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -42,7 +43,7 @@ public class Instructor {
 	// since instructor can have many COurce we need some realtion like collection
 	// instructor referes to instructor propety in Couse calss
 	// NO CASCADE DELETE
-	@OneToMany(mappedBy="instructor",cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="instructor",cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	private List<Course> courses;
 	// generate getter/setter
 	// add convinent method to bi - directional Link for two tables
@@ -120,12 +121,16 @@ public class Instructor {
 		courses.add(course);
 		course.setInstructor(this);
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Instructor [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
 				+ ", instructorDetail=" + instructorDetail + "]";
 	}
+
+
+	
+
 	
 	
 	

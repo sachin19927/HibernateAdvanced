@@ -22,7 +22,7 @@ public class CreateCouseDemo {
 			
 			session.beginTransaction();
 			// get Instructor from DB
-			Instructor instructor=session.get(Instructor.class, 3);
+			Instructor instructor=session.get(Instructor.class, 5);
 			
 			
 			// create some cources

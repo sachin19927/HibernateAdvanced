@@ -8,7 +8,7 @@ import com.mapping.entity.Course;
 import com.mapping.entity.Instructor;
 import com.mapping.entity.InstructorDetail;
 
-public class DemoOnLazyEager {
+public class DemoOnLazyEagerFixed {
 
 	public static void main(String[] args) {
 		
@@ -24,12 +24,16 @@ public class DemoOnLazyEager {
 			// get Instructor from DB
 			Instructor instructor=session.get(Instructor.class, 5);
 			System.err.println("Instructor object "+ instructor );
-			session.getTransaction().commit();
-			// break the session  by closing session close since Lazy Fetch reqiure hibernate session
-			session.close();
 			// get Course from instructor
 			System.err.println( "Cources : "+ instructor.getCourses());
-			// .getCourses() this our lazy data 
+			// .getCourses() this our lazy data
+			session.getTransaction().commit();
+			session.close();
+			
+			System.err.println("session closed  ");
+			// get Course from instructor
+						System.err.println( "Cources : "+ instructor.getCourses());
+						// .getCourses() this our lazy data
 		}
 		catch (Exception e) {
 			e.printStackTrace();

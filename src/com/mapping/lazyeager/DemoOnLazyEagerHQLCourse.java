@@ -1,5 +1,7 @@
 package com.mapping.lazyeager;
 
+
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -8,7 +10,7 @@ import com.mapping.entity.Course;
 import com.mapping.entity.Instructor;
 import com.mapping.entity.InstructorDetail;
 
-public class DemoOnLazyEager {
+public class DemoOnLazyEagerHQLCourse {
 
 	public static void main(String[] args) {
 		
@@ -22,14 +24,19 @@ public class DemoOnLazyEager {
 			
 			session.beginTransaction();
 			// get Instructor from DB
-			Instructor instructor=session.get(Instructor.class, 5);
-			System.err.println("Instructor object "+ instructor );
+			//when excuted will load instructor and course all at once
+			Query<Instructor> query=session.createQuery("select i from Instructor i "
+					+ " JOIN FETCH i.courses where i.id=:theInstructorId ",Instructor.class );
+			// set paratmeter on query
+			query.setParameter("theInstructorId", 5);
+			
+			// excute query
+			Instructor instructor=query.getSingleResult();
+			// load instructor and course all at once
+			
+			System.err.println("Instructor : "+ instructor);
 			session.getTransaction().commit();
-			// break the session  by closing session close since Lazy Fetch reqiure hibernate session
 			session.close();
-			// get Course from instructor
-			System.err.println( "Cources : "+ instructor.getCourses());
-			// .getCourses() this our lazy data 
 		}
 		catch (Exception e) {
 			e.printStackTrace();
