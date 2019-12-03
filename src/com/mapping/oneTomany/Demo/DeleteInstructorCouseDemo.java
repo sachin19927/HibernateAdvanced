@@ -21,11 +21,16 @@ public class DeleteInstructorCouseDemo {
 		{
 			
 			session.beginTransaction();
-			// get Instructor from DB
-			Instructor instructor=session.get(Instructor.class, 3);
-			System.err.println("Instructot "+ instructor);
-			// get Course for the instrructor
-			System.err.println("Course "+ instructor.getCourses() );
+			
+			// get cource 
+			Course course= session.get(Course.class, 1);
+			
+			System.err.println("Deleting Course :" +course);
+			
+			// delete course
+			session.delete(course);
+			
+			
 			session.getTransaction().commit();
 			
 		}
