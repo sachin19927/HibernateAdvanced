@@ -20,20 +20,18 @@ public class CreateDemoOnetoOne {
 		
 		try
 		{ 
-		
+			// create object
+			Instructor instructor=new Instructor("sachin", "gowda", "sachin.hs@bcits.in");
+			InstructorDetail instructorDetail=new InstructorDetail("www.youtube.com", "riding");
+			//assocaite objects    now these two enetity are assoicated in memory still changes reuired
+			instructor.setInstructorDetail(instructorDetail);
+			
+			// begin Transaction
 			session.beginTransaction();
-			// get Instructor by primary key using Query HQL
-			Instructor instructor=(Instructor) session.createQuery("from Instructor where id=2").getSingleResult();
 			
-			
-			// delete the instruction
-			if(instructor!=null)
-			{
-				System.err.println("delete instructor "+instructor);
-				System.err.println("delete instructor "+instructor.getInstructorDetail().getHobby());
-				// Note will delete all Object and assoicated obje since Cascade type is ALL
-				session.delete(instructor);
-			}
+			// save transition
+			System.err.println("Saving Instructor: "+instructor);
+			session.save(instructor); // Note : it will also saves the detail oject bcz of CascadeType.ALL
 			
 			// commit transaction
 			session.getTransaction().commit();

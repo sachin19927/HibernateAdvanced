@@ -19,20 +19,20 @@ public class Course {
 	//define getter and setter
 	// define tostring
 	// annotaone fields
-	
+
 		@Id
  		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		@Column(name="id")
 		private int id;
-		
+
 		@Column(name="title")
 		private String title;
 		// many course has one instructor
 		// cascade is imp dnt delete so check cascade delete
-		@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH}) 							
+		@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.DETACH,CascadeType.MERGE,CascadeType.REFRESH})
 		@JoinColumn(name="instructor_id")  // instructor_id is kay in Course table which points if of Instructor table
 		private Instructor instructor;
-	
+
 	public Course() {
 		// TODO Auto-generated constructor stub
 	}
@@ -69,8 +69,8 @@ public class Course {
 	public String toString() {
 		return "Course [id=" + id + ", title=" + title + ", instructor=" + instructor + "]";
 	}
-	
-	
-	
+
+
+
 
 }
