@@ -8,7 +8,7 @@ import com.mapping.entity.Course;
 import com.mapping.entity.Instructor;
 import com.mapping.entity.InstructorDetail;
 
-public class CreateInstructorDemo {
+public class DeleteInstructorCouseDemo {
 
 	public static void main(String[] args) {
 		
@@ -19,16 +19,13 @@ public class CreateInstructorDemo {
 		Session session =factory.getCurrentSession();
 		try
 		{
-			//create  the objects
-			Instructor instructor=new Instructor("test", "record", "abc@gmail.com");
-			InstructorDetail detail=new InstructorDetail("www.www", "boring");
-			
-			
-			// assoicatee the objects
-			instructor.setInstructorDetail(detail);
 			
 			session.beginTransaction();
-			session.save(instructor); 
+			// get Instructor from DB
+			Instructor instructor=session.get(Instructor.class, 3);
+			System.err.println("Instructot "+ instructor);
+			// get Course for the instrructor
+			System.err.println("Course "+ instructor.getCourses() );
 			session.getTransaction().commit();
 			
 		}
