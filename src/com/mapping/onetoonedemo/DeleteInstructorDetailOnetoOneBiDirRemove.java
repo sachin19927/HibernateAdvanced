@@ -36,7 +36,7 @@ public class DeleteInstructorDetailOnetoOneBiDirRemove {
 				// remove the assoicated object reference
 				// break bi directionl link
 				instructorDetail.getInstructor().setInstructorDetail(null);
-				session.delete(instructorDetail);
+				session.delete(instructorDetail); 
 				
 				
 			}
