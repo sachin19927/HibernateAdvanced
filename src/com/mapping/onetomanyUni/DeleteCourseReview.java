@@ -1,4 +1,4 @@
-package com.mapping.oneTomanyuni;
+package com.mapping.onetomanyUni;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -9,7 +9,7 @@ import com.mapping.entity.Instructor;
 import com.mapping.entity.InstructorDetail;
 import com.mapping.entity.Review;
 
-public class GetCourseReview {
+public class DeleteCourseReview {
 	
 public static void main(String[] args) {
 	
@@ -25,13 +25,15 @@ public static void main(String[] args) {
 
 		session.beginTransaction();
 		//crate a cource
-		Course course=session.get(Course.class, 3);
+		Course course=session.get(Course.class, 4);
 		
+		//
 		System.err.println("courses  :: "+course);
 		System.err.println("Revirews  :: "+course.getReviews());  //reviews are confifarble for lazy fetch
 		// so we are loading it on demand
 		
-	
+		System.err.println("delete course");
+		session.delete(course);
 		session.getTransaction().commit();
 		System.err.println("fetched");
 		
