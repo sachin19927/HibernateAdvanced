@@ -13,11 +13,11 @@
         <property name="connection.password">hbstudent</property> -->
         
         <property name="connection.driver_class">org.postgresql.Driver</property>
-        <property name="connection.url">jdbc:postgresql://localhost:6412/personal</property> 
-         <!-- <property name="connection.url">jdbc:postgresql://localhost:5432/personal</property> --> 
+        <!-- <property name="connection.url">jdbc:postgresql://localhost:6412/personal?currentSchema=myschema</property> --> 
+        <property name="connection.url">jdbc:postgresql://localhost:5432/personal?currentSchema=basicdb</property>
         <property name="connection.username">postgres</property>
-        <property name="connection.password">postgress</property>
-       <!--   <property name="connection.password">sachin</property>  -->
+        <!-- <property name="connection.password">postgress</property> -->
+     	<property name="connection.password">sachin</property>
 
         <!-- JDBC connection pool settings ... using built-in test pool -->
         <property name="connection.pool_size">1</property>
